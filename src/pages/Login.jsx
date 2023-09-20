@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Input from "../components/Input";
-import ToastNotif from "../components/ToastNotif";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/public.service";
 import { toast } from "react-toastify";
@@ -25,7 +24,7 @@ const Login = ({ setToken }) => {
     const data = await login(fields);
     if (data.user !== null) {
       setToken(data);
-      navigate("/");
+      navigate("/dashboard");
     } else {
       toast.error("Maaf, akun yang kamu masukkan salah 🗿");
     }
@@ -33,7 +32,6 @@ const Login = ({ setToken }) => {
 
   return (
     <div className="hero min-h-screen">
-      <ToastNotif />
       <div className="hero-content flex-col lg:flex-row-reverse p-8">
         <div className="text-center lg:ml-12 lg:text-left lg:w-3/6">
           <h1 className="text-5xl font-bold text-center tracking-wide">

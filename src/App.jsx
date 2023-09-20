@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Index from "./pages/dashboard/Index";
+import ToastNotif from "./components/ToastNotif";
+import MyProfile from "./pages/dashboard/MyProfile";
+import MyContent from "./pages/dashboard/MyContent";
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -19,11 +23,23 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      {token ? <Route path="/" element={<Home token={token} />} /> : ""}
-      <Route path="/login" element={<Login setToken={setToken} />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
+    <div className="bg-white min-h-screen w-full">
+      <ToastNotif />
+
+      <Routes>
+        {token ? (
+          <Route path="/dashboard">
+            <Route index element={<Index />} />
+            <Route path="myprofile" element={<MyProfile />} />
+            <Route path="mycontent" element={<MyContent />} />
+          </Route>
+        ) : (
+          ""
+        )}
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </div>
   );
 };
 
