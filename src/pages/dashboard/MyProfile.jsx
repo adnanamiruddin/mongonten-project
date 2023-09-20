@@ -14,6 +14,7 @@ const MyProfile = ({ token }) => {
     bio: "",
     photo: "",
   });
+  const [isEditing, setIsEditing] = useState(false);
   const [newUserData, setNewUserData] = useState({
     name: "",
     domicile: "",
@@ -38,7 +39,12 @@ const MyProfile = ({ token }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewUserData({ ...newUserData, [name]: value });
+    setUserData({ ...userData, [name]: value });
+    // setNewUserData({ ...newUserData, [name]: value });
+  };
+
+  const handleEditUserData = () => {
+    setIsEditing(true);
   };
 
   return (
@@ -56,7 +62,7 @@ const MyProfile = ({ token }) => {
             <Input
               label="Nama Lengkap"
               isRequire
-              name="fullname"
+              name="name"
               placeholder="John Doe"
               value={userData.name}
               handleInputChange={handleInputChange}
@@ -67,7 +73,7 @@ const MyProfile = ({ token }) => {
             <Input
               label="Domisili"
               isRequire
-              name="location"
+              name="domicile"
               placeholder="Makassar"
               value={userData.domicile}
               handleInputChange={handleInputChange}
@@ -104,14 +110,17 @@ const MyProfile = ({ token }) => {
             />
           </div>
 
-          <Button
-            label={
-              "SIMPAN"
-              // userData.account.fullname !== "(Your Full Name...)"
-              //   ? "UPDATE"
-              //   : "SAVE"
-            }
-          />
+          <div className="flex justify-between w-full pt-4">
+            <Button
+              label={
+                "SIMPAN"
+                // userData.account.fullname !== "(Your Full Name...)"
+                //   ? "UPDATE"
+                //   : "SAVE"
+              }
+            />
+            <Button label="UBAH" type="button" onClick={handleEditUserData} />
+          </div>
         </form>
       </div>
     </div>
