@@ -1,11 +1,15 @@
+import { useEffect } from "react";
+import { getSelectedAccount } from "../../api/private.service";
 import AuthNav from "../../components/AuthNav";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import InputImage from "../../components/InputImage";
 import Button from "../../components/Button";
 
-const MyContent = () => {
-  
+const MyContent = ({ token }) => {
+  useEffect(() => {
+    getSelectedAccount();
+  }, []);
 
   return (
     <div>

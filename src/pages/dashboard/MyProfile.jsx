@@ -1,10 +1,46 @@
+import { useEffect, useState } from "react";
+import { getSelectedAccount } from "../../api/private.service";
 import AuthNav from "../../components/AuthNav";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import InputImage from "../../components/InputImage";
 import Button from "../../components/Button";
 
-const MyProfile = () => {
+const MyProfile = ({ token }) => {
+  const [userData, setUserData] = useState({
+    name: "",
+    domicile: "",
+    slug: "",
+    bio: "",
+    photo: "",
+  });
+  const [newUserData, setNewUserData] = useState({
+    name: "",
+    domicile: "",
+    slug: "",
+    bio: "",
+    photo: "",
+  });
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const data = await getSelectedAccount(token.user.id);
+      setUserData({
+        name: data[0].name,
+        domicile: data[0].domicile,
+        slug: data[0].slug,
+        bio: data[0].bio,
+        photo: data[0].photo,
+      });
+    };
+    getUserData();
+  }, [token]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUserData({ ...newUserData, [name]: value });
+  };
+
   return (
     <div>
       <AuthNav />
@@ -22,7 +58,8 @@ const MyProfile = () => {
               isRequire
               name="fullname"
               placeholder="John Doe"
-              // handleInputChange={handleInputChange}
+              value={userData.name}
+              handleInputChange={handleInputChange}
             />
           </div>
 
@@ -32,7 +69,8 @@ const MyProfile = () => {
               isRequire
               name="location"
               placeholder="Makassar"
-              // handleInputChange={handleInputChange}
+              value={userData.domicile}
+              handleInputChange={handleInputChange}
             />
           </div>
 
@@ -42,7 +80,8 @@ const MyProfile = () => {
               isRequire
               name="slug"
               placeholder="your.name"
-              // handleInputChange={handleInputChange}
+              value={userData.slug}
+              handleInputChange={handleInputChange}
             />
           </div>
 
@@ -51,7 +90,8 @@ const MyProfile = () => {
               label="Bio (pengenalan singkat)"
               name="bio"
               placeholder="I am..."
-              // handleInputChange={handleInputChange}
+              value={userData.bio}
+              handleInputChange={handleInputChange}
             />
           </div>
 
@@ -59,7 +99,7 @@ const MyProfile = () => {
             <InputImage
               label="Foto"
               name="photo"
-              // selectedImage={selectedImage}
+              selectedImage={userData.photo}
               // handleImageChange={handleImageChange}
             />
           </div>

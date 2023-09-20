@@ -29,8 +29,8 @@ const App = () => {
         {token ? (
           <Route path="/dashboard">
             <Route index element={<Index />} />
-            <Route path="myprofile" element={<MyProfile />} />
-            <Route path="mycontents" element={<MyContent />} />
+            <Route path="myprofile" element={<MyProfile token={token} />} />
+            <Route path="mycontents" element={<MyContent token={token} />} />
           </Route>
         ) : (
           ""

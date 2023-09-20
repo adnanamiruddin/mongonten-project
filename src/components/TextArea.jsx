@@ -1,4 +1,4 @@
-const TextArea = ({ label, name, placeholder, handleInputChange }) => {
+const TextArea = ({ label, name, placeholder, value, handleInputChange }) => {
   return (
     <>
       <label>{label}</label>
@@ -7,6 +7,7 @@ const TextArea = ({ label, name, placeholder, handleInputChange }) => {
         name={name}
         placeholder={placeholder}
         onChange={handleInputChange}
+        value={value}
         className="input input-bordered w-full h-32 p-4 resize-none focus:border-2 focus:border-blue-500 mt-1 bg-gray-100 active:shadow-lg"
       />
     </>
