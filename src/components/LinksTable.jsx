@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-export default function LinksTable({ accountLinks, handleEdit, handleDelete }) {
+const LinksTable = ({ accountLinks, handleEdit, handleDelete }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -21,7 +19,7 @@ export default function LinksTable({ accountLinks, handleEdit, handleDelete }) {
               <td>
                 {value.attributes.icon?.data?.attributes?.url ? (
                   <div className="relative w-8 h-8">
-                    <Image
+                    <img
                       src={`${process.env.NEXT_PUBLIC_ASSET_URL}${value.attributes.icon.data.attributes.url}`}
                       alt={value.attributes.title}
                       layout="fill"
@@ -65,4 +63,6 @@ export default function LinksTable({ accountLinks, handleEdit, handleDelete }) {
       </table>
     </div>
   );
-}
+};
+
+export default LinksTable;

@@ -1,18 +1,11 @@
-import Image from "next/image";
-
-export default function InputImage({
-  label,
-  name,
-  selectedImage,
-  handleImageChange,
-}) {
+const InputImage = ({ label, name, selectedImage, handleImageChange }) => {
   return (
     <>
       <label className="self-start mb-2">{label}</label>
       {selectedImage ? (
-        <Image width={200} height={200} src={selectedImage} alt="Selected" />
+        <img width={200} height={200} src={selectedImage} alt="Selected" />
       ) : (
-        <Image
+        <img
           width={200}
           height={200}
           src="https://via.placeholder.com/200x200"
@@ -31,4 +24,6 @@ export default function InputImage({
       </label>
     </>
   );
-}
+};
+
+export default InputImage;

@@ -1,4 +1,4 @@
-export default function Input({
+const Input = ({
   type,
   label,
   isRequire,
@@ -6,7 +6,7 @@ export default function Input({
   placeholder,
   value,
   handleInputChange,
-}) {
+}) => {
   return (
     <>
       <label>
@@ -19,8 +19,10 @@ export default function Input({
         placeholder={placeholder}
         onChange={handleInputChange}
         value={value}
-        className="input input-bordered w-full mt-1 focus:border-2 focus:border-blue-500 active:shadow-lg"
+        className="input input-bordered w-full mt-1 focus:border-2 focus:border-blue-500 bg-gray-100 active:shadow-lg"
       />
     </>
   );
-}
+};
+
+export default Input;

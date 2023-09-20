@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Index from "./pages/dashboard/Index";
@@ -23,7 +22,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen w-full">
+    <div className="bg-white min-h-screen w-full text-black">
       <ToastNotif />
 
       <Routes>
@@ -31,7 +30,7 @@ const App = () => {
           <Route path="/dashboard">
             <Route index element={<Index />} />
             <Route path="myprofile" element={<MyProfile />} />
-            <Route path="mycontent" element={<MyContent />} />
+            <Route path="mycontents" element={<MyContent />} />
           </Route>
         ) : (
           ""

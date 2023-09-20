@@ -1,11 +1,16 @@
-import AuthNav from "../../components/AuthNav"
+import AuthNav from "../../components/AuthNav";
 
 const Index = () => {
   return (
     <div>
-        <AuthNav />
-    </div>
-  )
-}
+      <AuthNav />
+      <div className="pt-24 px-4">
+        <h1 className="text-2xl text-center font-semibold">BERANDA</h1>
 
-export default Index
+        <div className="divider" />
+      </div>
+    </div>
+  );
+};
+
+export default Index;

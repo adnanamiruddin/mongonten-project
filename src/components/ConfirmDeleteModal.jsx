@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function ConfirmDeleteModal({
-  handleDeleteConfirm,
-  handleCancel,
-}) {
+const ConfirmDeleteModal = ({ handleDeleteConfirm, handleCancel }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleConfirm = async () => {
@@ -33,4 +30,6 @@ export default function ConfirmDeleteModal({
       </form>
     </dialog>
   );
-}
+};
+
+export default ConfirmDeleteModal;

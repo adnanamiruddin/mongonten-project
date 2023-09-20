@@ -1,9 +1,4 @@
-export default function TextArea({
-  label,
-  name,
-  placeholder,
-  handleInputChange,
-}) {
+const TextArea = ({ label, name, placeholder, handleInputChange }) => {
   return (
     <>
       <label>{label}</label>
@@ -12,8 +7,10 @@ export default function TextArea({
         name={name}
         placeholder={placeholder}
         onChange={handleInputChange}
-        className="input input-bordered w-full h-32 p-4 resize-none focus:border-2 focus:border-blue-500 mt-1 active:shadow-lg"
+        className="input input-bordered w-full h-32 p-4 resize-none focus:border-2 focus:border-blue-500 mt-1 bg-gray-100 active:shadow-lg"
       />
     </>
   );
-}
+};
+
+export default TextArea;
