@@ -4,15 +4,15 @@ import { FaBars, FaTimes } from "react-icons/fa";
 const links = [
   {
     id: 1,
-    display: "home",
+    display: "beranda",
   },
   {
     id: 2,
-    display: "about",
+    display: "profil saya",
   },
   {
     id: 3,
-    display: "projects",
+    display: "konten saya",
   },
   {
     id: 4,
