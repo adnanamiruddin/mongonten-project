@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const links = [
   {
@@ -21,10 +21,17 @@ const links = [
 ];
 
 const AuthNav = () => {
+  const navigate = useNavigate();
+
   const [showNav, setShowNav] = useState(false);
 
   const handleNavClick = () => {
     setShowNav(!showNav);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (

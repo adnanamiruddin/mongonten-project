@@ -6,6 +6,7 @@ import Index from "./pages/dashboard/Index";
 import ToastNotif from "./components/ToastNotif";
 import MyProfile from "./pages/dashboard/MyProfile";
 import MyContent from "./pages/dashboard/MyContent";
+import Home from "./pages/Home";
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -26,6 +27,11 @@ const App = () => {
       <ToastNotif />
 
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* ONLY AUTHENTICATED USER */}
         {token ? (
           <Route path="/dashboard">
             <Route index element={<Index />} />
@@ -35,8 +41,6 @@ const App = () => {
         ) : (
           ""
         )}
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
