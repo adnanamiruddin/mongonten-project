@@ -15,12 +15,12 @@ const MyContent = ({ token }) => {
     <div>
       <AuthNav />
       <div className="pt-24 px-4 pb-10">
-        {/* CARD */}
         <div className="pb-16">
           <h1 className="text-2xl text-center font-semibold">KONTEN SAYA</h1>
 
           <div className="divider" />
 
+          {/* CARD */}
           <div className="card w-auto bg-base-100 shadow-xl image-full">
             <figure>
               <img

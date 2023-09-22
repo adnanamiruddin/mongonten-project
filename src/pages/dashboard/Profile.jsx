@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getProfileBySlug } from "../../api/public.service";
+import { Link, useParams } from "react-router-dom";
+import {
+  getContentsByAccountId,
+  getProfileBySlug,
+} from "../../api/public.service";
 
 const Profile = () => {
   const { slug } = useParams();
@@ -11,18 +14,22 @@ const Profile = () => {
     name: "",
     photo: "",
   });
+  const [contents, setContents] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await getProfileBySlug(slug);
-      if (response) setProfile(response);
+      const profileData = await getProfileBySlug(slug);
+      if (profileData) setProfile(profileData);
+
+      const profileContents = await getContentsByAccountId(profileData.id);
+      if (profileContents) setContents(profileContents);
     };
     getData();
   }, [slug]);
 
   return (
     <div
-      className={`flex min-h-screen max-w-2xl m-auto flex-col items-center p-4 pt-12`}
+      className={`flex min-h-screen max-w-2xl m-auto flex-col items-center p-4 pt-12 bg-gradient-to-b from-white to-gray-500`}
     >
       <div className="w-[150px] h-[150px] rounded-full overflow-hidden mb-10">
         {profile.photo ? (
@@ -36,52 +43,42 @@ const Profile = () => {
         )}
       </div>
 
-      <div className="flex flex-col items-center gap-3 w-full mb-12">
+      <div className="flex flex-col items-center gap-5 w-full mb-12">
         <h3 className="text-2xl font-bold">{profile.name}</h3>
-        <p className="text-lg">{profile.bio}</p>
+        <p className="text-sm text-justify px-4">{profile.bio}</p>
+        <Link to="" className="btn btn-md btn-accent text-xs ml-auto mt-4">
+          Ajak Kolaborasi
+        </Link>
       </div>
 
-      {/* <div className="flex flex-col items-center w-full gap-8">
-        {accountLinks.length > 0 ? (
-          accountLinks.map((value, index) => {
-            const linkStatus = value.attributes.status;
-            const isDeactive = linkStatus === "deactive";
-            const isSuspend = linkStatus === "suspend";
+      <div className="flex flex-col items-center w-full gap-8">
+        {contents.length > 0 ? (
+          contents.map((content, index) => {
+            const isDeactive = content.status === "deactive";
+            // const isSuspend = content.status === "suspend";
 
             if (isDeactive) return null;
 
             return (
-              <a
-                key={index}
-                href={!isSuspend ? value.attributes.url : null}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`h-full w-full flex items-center gap-3 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 rounded-[20px] p-4  transition-all duration-300 ${
-                  isSuspend ? "filter brightness-50" : ""
-                } ${!isSuspend ? "hover:scale-105" : ""} ${
-                  !isSuspend ? "hover:cursor-pointer" : ""
-                }`}
-              >
-                <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-                  <div
-                    className="w-full h-full relative"
-                    style={{ paddingBottom: "100%" }}
-                  >
-                    {value.attributes.icon?.data?.attributes?.url ? (
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_ASSET_URL}${value.attributes.icon.data.attributes.url}`}
-                        alt={value.attributes.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="absolute rounded-full"
-                      />
-                    ) : (
-                      <div className="absolute w-full h-full bg-gray-300 rounded-full"></div>
-                    )}
+              <div key={index} className="pb-16">
+                <div className="card w-auto bg-base-100 shadow-xl image-full">
+                  <figure>
+                    <img src={content.image} alt={content.title} />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{content.title}</h2>
+                    <p>{content.desc}</p>
+                    <div className="card-actions justify-end">
+                      <Link
+                        to={`/${profile.slug}/content/${content.id}`}
+                        className="btn btn-primary"
+                      >
+                        Baca Selengkapnya
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                <span className="text-lg">{value.attributes.title}</span>
-              </a>
+              </div>
             );
           })
         ) : (
@@ -89,7 +86,7 @@ const Profile = () => {
             <p className="text-2xl text-gray-400">No links available 😐</p>
           </div>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
