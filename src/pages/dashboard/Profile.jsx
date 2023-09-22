@@ -4,6 +4,7 @@ import {
   getContentsByAccountId,
   getProfileBySlug,
 } from "../../api/public.service";
+import FormCollab from "../../components/FormCollab";
 
 const Profile = () => {
   const { slug } = useParams();
@@ -21,7 +22,7 @@ const Profile = () => {
       const profileData = await getProfileBySlug(slug);
       if (profileData) setProfile(profileData);
 
-      const profileContents = await getContentsByAccountId(profileData.id);
+      const profileContents = await getContentsByAccountId(slug);
       if (profileContents) setContents(profileContents);
     };
     getData();
@@ -46,9 +47,7 @@ const Profile = () => {
       <div className="flex flex-col items-center gap-5 w-full mb-12">
         <h3 className="text-2xl font-bold">{profile.name}</h3>
         <p className="text-sm text-justify px-4">{profile.bio}</p>
-        <Link to="" className="btn btn-md btn-accent text-xs ml-auto mt-4">
-          Ajak Kolaborasi
-        </Link>
+        <FormCollab />
       </div>
 
       <div className="flex flex-col items-center w-full gap-8">
