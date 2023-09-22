@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
-  getContentsByAccountId,
+  getContentsByAccountSlug,
   getProfileBySlug,
 } from "../../api/public.service";
 import FormCollab from "../../components/FormCollab";
@@ -22,7 +22,7 @@ const Profile = () => {
       const profileData = await getProfileBySlug(slug);
       if (profileData) setProfile(profileData);
 
-      const profileContents = await getContentsByAccountId(slug);
+      const profileContents = await getContentsByAccountSlug(slug);
       if (profileContents) setContents(profileContents);
     };
     getData();

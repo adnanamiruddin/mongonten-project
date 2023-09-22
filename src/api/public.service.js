@@ -33,28 +33,28 @@ const getProfileBySlug = async (slug) => {
   if (error) console.log(error);
 };
 
-const getContentsByAccountId = async (accountId) => {
+const getContentsByAccountSlug = async (slug) => {
   const { data, error } = await supabase
     .from("content")
     .select("*")
-    .eq("account", accountId);
+    .eq("account_slug", slug);
   if (data) return data;
   if (error) console.log(error);
 };
 
-const getDetailContentBySlugAndId = async (slug, contentId) => {
-  const { data: account, error: accountError } = await supabase
-    .from("account")
-    .select("*")
-    .eq("slug", slug)
-    .single();
-  if (accountError) console.log(accountError);
-  const accountId = account.id;
+// const { data: account, error: accountError } = await supabase
+//   .from("account")
+//   .select("*")
+//   .eq("slug", slug)
+//   .single();
+// if (accountError) console.log(accountError);
+// const accountId = account.id;
 
+const getDetailContentBySlugAndId = async (slug, contentId) => {
   const { data, error } = await supabase
     .from("content")
     .select("*")
-    .eq("account", accountId)
+    .eq("account_slug", slug)
     .eq("id", contentId)
     .single();
   if (data) return data;
@@ -65,6 +65,6 @@ export {
   regist,
   login,
   getProfileBySlug,
-  getContentsByAccountId,
+  getContentsByAccountSlug,
   getDetailContentBySlugAndId,
 };
