@@ -23,4 +23,14 @@ const login = async ({ email, password }) => {
   if (error) console.log(error);
 };
 
-export { regist, login };
+const getProfileBySlug = async (slug) => {
+  const { data, error } = await supabase
+    .from("account")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+  if (data) return data;
+  if (error) console.log(error);
+};
+
+export { regist, login, getProfileBySlug };
