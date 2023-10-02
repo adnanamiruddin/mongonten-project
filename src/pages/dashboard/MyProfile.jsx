@@ -27,11 +27,11 @@ const MyProfile = ({ token }) => {
     const getUserData = async () => {
       const data = await getSelectedAccount(token.user.id);
       setUserData({
-        name: data[0].name,
-        domicile: data[0].domicile,
-        slug: data[0].slug,
-        bio: data[0].bio,
-        photo: data[0].photo,
+        name: data.name,
+        domicile: data.domicile,
+        slug: data.slug,
+        bio: data.bio,
+        photo: data.photo,
       });
     };
     getUserData();

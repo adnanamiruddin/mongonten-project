@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import {
   getContentsByAccountSlug,
   getProfileBySlug,
-} from "../../api/public.service";
-import FormCollab from "../../components/FormCollab";
+} from "../api/public.service";
+import FormCollab from "../components/FormCollab";
 
 const Profile = () => {
   const { slug } = useParams();

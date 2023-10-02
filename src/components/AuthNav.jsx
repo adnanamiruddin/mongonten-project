@@ -18,6 +18,11 @@ const links = [
     display: "konten saya",
     route: "/dashboard/mycontents",
   },
+  {
+    id: 4,
+    display: "permintaan kolaborasi",
+    route: "/dashboard/collabreq",
+  },
 ];
 
 const AuthNav = () => {
@@ -67,7 +72,7 @@ const AuthNav = () => {
             <Link
               key={link.id}
               to={link.route}
-              className="px-4 cursor-pointer capitalize py-6 text-4xl"
+              className="px-4 cursor-pointer capitalize py-6 text-4xl text-center"
             >
               {link.display}
             </Link>

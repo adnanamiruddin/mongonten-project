@@ -9,8 +9,10 @@ const FormCollab = () => {
     name: "",
     type: "",
     desc: "",
+    location: "",
     no_wa: "",
     photo: "",
+    message: "",
   });
 
   const handleInputChange = (e) => {
@@ -31,12 +33,15 @@ const FormCollab = () => {
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-gray-300">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>
           <form className="flex flex-col gap-4">
+            <h1 className="text-3xl font-semibold text-center">
+              Ajak Kolaborasi
+            </h1>
+
             <div className="w-full lg:basis-2/4">
               <Input
                 label="Nama"
@@ -67,6 +72,15 @@ const FormCollab = () => {
             </div>
 
             <div className="w-full lg:basis-2/4">
+              <TextArea
+                label="Kota dan Alamat"
+                name="location"
+                placeholder="Makassar, Jl. Perintis Kemerdekaan"
+                handleInputChange={handleInputChange}
+              />
+            </div>
+
+            <div className="w-full lg:basis-2/4">
               <Input
                 label="Nomor WhatsApp"
                 isRequire
@@ -83,7 +97,19 @@ const FormCollab = () => {
                 // handleImageChange={handleImageChange}
               />
             </div>
-            <Button label="Kirim" />
+
+            <div className="w-full lg:basis-2/4">
+              <TextArea
+                label="Pesan"
+                name="message"
+                placeholder="UMKM saya berfokus pada..."
+                handleInputChange={handleInputChange}
+              />
+            </div>
+
+            <div className="flex justify-between w-full pt-4">
+              <Button label="Kirim" />
+            </div>
           </form>
         </div>
       </dialog>

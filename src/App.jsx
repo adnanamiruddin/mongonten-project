@@ -7,8 +7,9 @@ import ToastNotif from "./components/ToastNotif";
 import MyProfile from "./pages/dashboard/MyProfile";
 import MyContent from "./pages/dashboard/MyContent";
 import Home from "./pages/Home";
-import Profile from "./pages/dashboard/Profile";
-import Content from "./pages/dashboard/Content";
+import Profile from "./pages/Profile";
+import Content from "./pages/DetailContent";
+import CollabReq from "./pages/dashboard/CollabReq";
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -44,6 +45,7 @@ const App = () => {
             <Route index element={<Index />} />
             <Route path="myprofile" element={<MyProfile token={token} />} />
             <Route path="mycontents" element={<MyContent token={token} />} />
+            <Route path="collabreq" element={<CollabReq token={token} />} />
           </Route>
         ) : (
           ""

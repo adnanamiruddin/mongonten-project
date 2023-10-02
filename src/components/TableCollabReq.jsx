@@ -1,15 +1,15 @@
-const LinksTable = ({ accountLinks, handleEdit, handleDelete }) => {
+const TableCollabReq = ({ accountLinks, handleEdit, handleDelete }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">
         <thead>
           <tr>
             <th>No.</th>
-            <th>Type</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>URL</th>
-            <th>Action</th>
+            <th>Nama</th>
+            <th>Jenis</th>
+            <th>Deskripsi</th>
+            <th>Nomor WhatsApp</th>
+            <th>Photo</th>
           </tr>
         </thead>
         <tbody>
@@ -65,4 +65,4 @@ const LinksTable = ({ accountLinks, handleEdit, handleDelete }) => {
   );
 };
 
-export default LinksTable;
+export default TableCollabReq;

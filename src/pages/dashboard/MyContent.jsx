@@ -7,9 +7,9 @@ import InputImage from "../../components/InputImage";
 import Button from "../../components/Button";
 
 const MyContent = ({ token }) => {
-  useEffect(() => {
-    getSelectedAccount();
-  }, []);
+  // useEffect(() => {
+  //   getSelectedAccount();
+  // }, []);
 
   return (
     <div>

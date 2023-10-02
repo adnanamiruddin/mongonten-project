@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDetailContentBySlugAndId } from "../../api/public.service";
+import { getDetailContentBySlugAndId } from "../api/public.service";
 
 const Content = () => {
   const { slug, id } = useParams();
